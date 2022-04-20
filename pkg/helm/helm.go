@@ -44,6 +44,8 @@ func InstallRelease(context *model.Context, cmd *model.Packet) ([]*model.Packet,
 	instClient.ChartPathOptions = chartPathOptions
 	// 设置安装chart包等待其安装完成
 	instClient.Wait = true
+	// 设置安装是原子的，如果安装失败会回滚到上一个正常版本
+	instClient.Atomic = true
 	// 需要在那个命名空间下安装
 	instClient.Namespace = helmInstallReleaseParams.Namespace
 	// release的名称
